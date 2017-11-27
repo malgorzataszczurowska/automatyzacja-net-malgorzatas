@@ -1,31 +1,34 @@
 ﻿using System;
 
-namespace Zadanie1
+namespace Zadanie2
 {
     class Program
     {
         static void Main(string[] args)
         {
-            var hello = new SayHello();
-            hello.Say();
-
+            Say.Hello();
             Bravo();
         }
-
         private static void Bravo()
         {
             Console.WriteLine();
-            Console.WriteLine("Brawo! Pierwsze zadanie zrobione :)");
+            Console.WriteLine("Brawo! Drugie zadanie zrobione :)");
             Console.WriteLine("Naciśnij jakikolwiek klawisz aby zakończyć...");
             Console.ReadKey();
         }
     }
 
-   class SayHello
+
+    class Say
     {
-        public void Say()
+        public static void Hello()
         {
-            Console.WriteLine("Hello world");
+            Console.Write("Hello");
+        }
+
+        public void World()
+        {
+            Console.Write("World");
         }
     }
 }
