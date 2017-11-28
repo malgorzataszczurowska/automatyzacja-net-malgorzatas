@@ -11,7 +11,7 @@ namespace ClassLibrary1
 
     {
         // fact - dodano using xunit żeby vs widziało fact
-        //theory jeśli chcmey sprawdzać dla większej ilosci przypadków
+        //theory jeśli chcmey sprawdzać dla większej ilosci przypadków, liczby w inline data to dopowiednio x, y i expekted czyli wynik
         [Theory]
         [InlineData(1, 2, 3)]
         [InlineData(-10, 20, 10)]
