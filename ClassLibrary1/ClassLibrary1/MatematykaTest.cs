@@ -11,22 +11,28 @@ namespace ClassLibrary1
 
     {
         // fact - dodano using xunit żeby vs widziało fact
-        [Fact]
+        //theory jeśli chcmey sprawdzać dla większej ilosci przypadków
+        [Theory]
+        [InlineData(1, 2, 3)]
+        [InlineData(-10, 20, 10)]
+        [InlineData(-10, 10, 0)]
+        [InlineData(1000000, 1000000, 2000000)]
+        [InlineData(0, 0, 0)]
 
         //musi byc public bo inaczej nie będzie wudzialo nic z zewnątrz i voi  bo nie może nic nam zwracać
         //nazwa testu musi stricte odpowiadać temu co ma test wykonywać, jeśli nie można sensownie opisać nazwy testu tzn że może test jest za duży
 
-        public void Method_add_return_sum_of_given_values()
+        public void TheoryExample(double x, double y, double expected)
 
         {
             // arrange
             Matematyka math = new Matematyka();
 
             // act
-            double result = math.Add(10, 20);
+            var result = math.Add(x, y);
 
             // assert
-            Assert.Equal(30, result);
+            Assert.Equal(expected, result);
 
         }
         [Fact]
