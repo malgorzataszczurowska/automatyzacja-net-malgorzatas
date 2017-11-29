@@ -27,10 +27,13 @@ namespace SeleniumTests
         private const string Google = "https://www.google.com";
         private const string TextToSearch = "Code Sprinters";
         private const string PageTitle = "Code Sprinters -";
+        private const string LinkTextToFind = "Poznaj nasze podejście";
+        private const string Acceptance = "Akceptuję";
 
         private IWebDriver driver;
 
         private StringBuilder verificationErrors;
+        private IEnumerable elements;
 
         public Example()
 
@@ -52,27 +55,27 @@ namespace SeleniumTests
             driver.Navigate().GoToUrl(Google);
             Search(TextToSearch);
             OpenSearchResultByPageTitle(PageTitle);
-
-            var element = driver.FindElement(By.LinkText("Poznaj nasze podejście"));
-            Assert.NotNull(element);
-
-            var elements = driver.FindElements(By.LinkText("Poznaj nasze podejście"));
-            Assert.Single(elements);
-
-            driver.FindElement(By.LinkText("Akceptuję")).Click();
-
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(11));
-            wait.Until(ExpectedConditions.InvisibilityOfElementWithText(By.LinkText("Akceptuję"), "Akceptuję"));
-
-            WaitForClickable(By.LinkText("Poznaj nasze podejście"), 5);
-
-            driver.FindElement(By.LinkText("Poznaj nasze podejście")).Click();
-
-
+            AcceptCookiePolicy(Acceptance);
+            GetElementsByLinkText(LinkTextToFind);
+         
             Assert.Contains("WIEDZA NA PIERWSZYM MIEJSCU", driver.PageSource);
+       }
 
+        private void GoToOurApproachPage()
+        {
+            AcceptCookiePolicy(Acceptance);
+        }
 
+        private void AcceptCookiePolicy(string Acceptance)
+        {
+            driver.FindElement(By.LinkText(Acceptance)).Click();
+            new WebDriverWait(driver, TimeSpan.FromSeconds(11))
+                .Until(ExpectedConditions.InvisibilityOfElementWithText(By.LinkText(Acceptance), Acceptance));
+        }
 
+        private void GetElementsByLinkText(string LinkTextToFind)
+        {
+            driver.FindElement(By.LinkText(LinkTextToFind)).Click();
         }
 
         private void Search(string query)
