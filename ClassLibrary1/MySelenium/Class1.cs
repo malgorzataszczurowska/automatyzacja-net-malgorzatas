@@ -69,8 +69,8 @@ namespace SeleniumTests
             var element = driver.FindElement(By.LinkText("Poznaj nasze podejście"));
             Assert.NotNull(element);
 
-            var elemnets = driver.FindElements(By.LinkText("Poznaj nasze podejście"));
-            Assert.Single(elemnets);
+            var elements = driver.FindElements(By.LinkText("Poznaj nasze podejście"));
+            Assert.Single(elements);
             
             driver.FindElement(By.LinkText("Akceptuję")).Click();
 
@@ -84,8 +84,8 @@ namespace SeleniumTests
 
             Assert.Contains("WIEDZA NA PIERWSZYM MIEJSCU", driver.PageSource);
             
-
-
+            
+        
 
 
            
