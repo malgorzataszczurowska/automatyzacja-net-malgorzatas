@@ -25,16 +25,12 @@ namespace SeleniumTests
     {
         private const string SearchTextBoxId = "lst-ib";
         private const string Google = "https://www.google.com";
-
+        private const string TextToSearch = "Code Sprinters";
+        private const string PageTitle = "Code Sprinters -";
 
         private IWebDriver driver;
 
         private StringBuilder verificationErrors;
-
-        private string baseURL;
-
-        private bool acceptNextAlert = true;
-        private IEnumerable elements;
 
         public Example()
 
@@ -43,25 +39,19 @@ namespace SeleniumTests
             driver = new ChromeDriver();
             driver.Manage().Window.Maximize();
 
-            baseURL = "https://www.google.pl/";
-
             verificationErrors = new StringBuilder();
 
         }
 
         [Fact]
 
-        public void TheExampleTest()
+        public void NavigatingToCodeSprintersSite()
 
         {
 
             driver.Navigate().GoToUrl(Google);
-
-            var searchbox = GetSearchbox();
-            searchbox.Clear();
-            searchbox.SendKeys("code sprinters");
-            searchbox.Submit();
-            OpeSearchResult();
+            Search(TextToSearch);
+            OpenSearchResultByPageTitle(PageTitle);
 
             var element = driver.FindElement(By.LinkText("Poznaj nasze podejście"));
             Assert.NotNull(element);
@@ -85,9 +75,18 @@ namespace SeleniumTests
 
         }
 
-        private void OpeSearchResult()
+        private void Search(string query)
         {
-            driver.FindElement(By.LinkText("Code Sprinters -")).Click();
+            var searchbox = GetSearchbox();
+            searchbox.Clear();
+            searchbox.SendKeys(query);
+            searchbox.Submit();
+        }
+
+
+        private void OpenSearchResultByPageTitle(string title)
+        {
+            driver.FindElement(By.LinkText(title)).Click();
         }
 
         private IWebElement GetSearchbox()
@@ -107,7 +106,7 @@ namespace SeleniumTests
 
 
 
-        protected void waitForElementPresent(IWebElement by, int seconds)
+        protected void WaitForClickable(IWebElement by, int seconds)
 
         {
 
