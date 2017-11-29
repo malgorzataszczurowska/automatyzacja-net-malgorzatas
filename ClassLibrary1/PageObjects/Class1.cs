@@ -7,7 +7,7 @@ using Xunit;
 
 namespace PageObjects
 {
-    public class AddingBlogCommentsTests
+    public class AddingBlogCommentsTests : IDisposable
     {
         [Fact]
         public void CanAddCommentToTheBlogNote()
@@ -19,6 +19,11 @@ namespace PageObjects
             //otwóz pierwszą notkę
             //dodaj komentarz
             //sprawdź ze komentarz został dodany
+        }
+
+        public void Dispose()
+        {
+            Browser.Close();
         }
     }
 

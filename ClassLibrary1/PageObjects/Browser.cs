@@ -1,20 +1,26 @@
-﻿using OpenQA.Selenium.Chrome;
+﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
 using System;
 
 namespace PageObjects
 {
     internal class Browser
     {
-        private static ChromeDriver _driver;
+        private static IWebDriver driver;
 
         static Browser()
         {
-            _driver = new ChromeDriver();
+            driver = new ChromeDriver();
         }
 
         internal static void NavigateTo(string url)
         {
-            _driver.Navigate().GoToUrl(url);
+            driver.Navigate().GoToUrl(url);
+        }
+
+        internal static void Close()
+        {
+            driver.Quit();
         }
     }
 }
