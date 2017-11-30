@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PageObjects;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,17 +15,27 @@ namespace PageObjects
         {
             MainPage.Open();
 
+            MainPage.OpenFirstNote();
+            Notepage.AddComment(new Comment
+            {
+                Text = "lorem ipsum",
+                Mail = "test@test.pl",
+                User = "białko"
+            });
 
             //wejdź na stronę bloga
             //otwóz pierwszą notkę
             //dodaj komentarz
             //sprawdź ze komentarz został dodany
+
+
         }
 
         public void Dispose()
         {
             Browser.Close();
         }
+
     }
 
 }
