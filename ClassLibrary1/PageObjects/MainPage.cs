@@ -18,5 +18,11 @@ namespace PageObjects
             var element = Browser.FindByXpath("//article/header");
             element.First().Click();
         }
+
+        internal static void OpenSecondNote()
+        {
+            var element = Browser.FindByXpath("//comment-reply-link");
+            element.First().Click();
+        }
     }
 }
